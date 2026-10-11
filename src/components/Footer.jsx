@@ -5,10 +5,10 @@ export function Footer(){
         <footer className="site-footer">
         <p>2024 Sonido Vivo. Todos los derechos reservados.</p>
         <nav class="footer-nav">
-            <a><NavLink to="/nosotros">Nosotros</NavLink></a>
-            <a><NavLink to="/blogs">Blogs</NavLink></a>
-            <a><NavLink to="/contacto">Contacto</NavLink></a>
+            <NavLink to="/nosotros">Nosotros</NavLink>
+            <NavLink to="/blogs">Blogs</NavLink>
+            <NavLink to="/contacto">Contacto</NavLink>
         </nav>
     </footer>
-    )
+    );
 }

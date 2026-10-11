@@ -3,22 +3,24 @@ export function Contacto(){
     return(
         <main>
         <section className="form-section">
-            <form id="form-contacto" className="formulario" novalidate>
+            <form id="form-contacto" className="formulario" noValidate>
                 <h1>CONTACTO</h1>
 
                 <div className="campo">
-                    <label for="nombre">Nombre completo</label>
+                    <label htmlFor="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" />
                     <span className="error-mensaje" id="error-nombre"></span>
                 </div>
 
                 <div className="campo">
-                    <label for="correo">Email</label>
+                    <label htmlFor="correo">Email</label>
+                    <input type="email" id="correo" name="correo" />
                     <span className="error-mensaje" id="error-correo"></span>
                 </div>
 
                 <div className="campo">
-                    <label for="comentario">Comentario</label>
-                    <textarea id="comentario" name="comentario" rows="5" maxlength="500"></textarea>
+                    <label htmlFor="comentario">Comentario</label>
+                    <textarea id="comentario" name="comentario" rows="5" maxLength="500"></textarea>
                     <span className="error-mensaje" id="error-comentario"></span>
                 </div>
 
@@ -27,5 +29,5 @@ export function Contacto(){
             </form>
         </section>
     </main>
-    )
+    );
 }

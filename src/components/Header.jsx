@@ -3,10 +3,10 @@ import { NavLink } from "react-router";
 export function Header(){
     return(
         <header className="header-index">
-            <a>SONIDO VIVO</a>
+            <Link to="/">SONIDO VIVO</Link>
             <nav className="nav-menu">
                 <ul>
-                    <li><NavLink to="/index">Inicio</NavLink></li>
+                    <li><NavLink to="/">Inicio</NavLink></li>
                     <li><NavLink to="/productos">Productos</NavLink></li>
                     <li><NavLink to="/nosotros">Nosotros</NavLink></li>
                     <li><NavLink to="/blogs">Blogs</NavLink></li>
@@ -14,10 +14,10 @@ export function Header(){
                 </ul>
             </nav>
             <div className="header-acciones">
-                <li><NavLink to="/login">Iniciar Sesión</NavLink></li>
-                <li><NavLink to="/registro">Registrarse</NavLink></li>
-                <li><NavLink to="/">Carrito</NavLink></li>
+                <NavLink to="/login">Iniciar Sesión</NavLink>
+                <NavLink to="/registro">Registrarse</NavLink>
+                <span className="carrito-link">Carrito (0)</span>
             </div>
         </header>
-    )
+    );
 }
