@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import App from './App.jsx'
 import { Header } from './components/header.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Index } from './pages/index.jsx'
@@ -19,20 +18,20 @@ import { Detalle_Producto } from './pages/detalle-producto.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Header/>
-        <Routes>
-          <Route path='/index' element={<Index/>}/>
-          <Route path='/blogs' element={<Blogs/>}/>
-          <Route path='/contacto' element={<Contacto/>}/>
-          <Route path='/detalle-blog-1' element={<Detalle_Blog_1/>}/>
-          <Route path='/detalle-blog-2' element={<Detalle_Blog_2/>}/>
-          <Route path='/detalle-producto' element={<Detalle_Producto/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/nosotros' element={<Nosotros/>}/>
-          <Route path='/productos' element={<Productos/>}/>
-          <Route path='/registro' element={<Registro/>}/>
-        </Routes>
-      <Footer/>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/productos" element={<Productos />} />
+        <Route path="/detalle-producto/:id" element={<Detalle_Producto />} />
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/detalle-blog-1" element={<Detalle_Blog_1 />} />
+        <Route path="/detalle-blog-2" element={<Detalle_Blog_2 />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Registro />} />
+      </Routes>
+      <Footer />
     </BrowserRouter>
   </StrictMode>,
 )

@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 export function Index(){
     return(
         <main>
@@ -6,7 +7,7 @@ export function Index(){
                 <h1>Tienda Sonido VIVO</h1>
                 <p>Instrumentos musicales, equipos de sonido y accesorios para músicos en Viña del Mar. Más de 11 años
                     conectando a artistas con su sonido.</p>
-                <a href="productos.html" className="btn-primary">Ver Productos</a>
+                <Link to="/productos" className="btn-primary">Ver Productos</Link>
             </div>
         </section>
 
@@ -15,7 +16,7 @@ export function Index(){
             <div className="productos-grid">
 
                 <article className="product-article">
-                    <img src="img/productos/ge001.jpg" alt="Guitarra Eléctrica Stratocaster Squier"/>
+                    <img src="/img/productos/ge001.jpg" alt="Guitarra Eléctrica Stratocaster Squier"/>
                     <h3>Guitarra Eléctrica Stratocaster</h3>
                     <p className="brand">Squier Affinity Strat</p>
                     <p className="price">$249.990</p>
@@ -23,7 +24,7 @@ export function Index(){
                 </article>
 
                 <article className="product-article">
-                    <img src="img/productos/ga001.jpg" alt="Guitarra Acústica Folk Yamaha F310"/>
+                    <img src="/img/productos/ga001.jpg" alt="Guitarra Acústica Folk Yamaha F310"/>
                     <h3>Guitarra Acústica Folk</h3>
                     <p className="brand">Yamaha F310</p>
                     <p className="price">$129.990</p>
@@ -31,7 +32,7 @@ export function Index(){
                 </article>
 
                 <article className="product-article">
-                    <img src="img/productos/tc001.jpg" alt="Teclado Digital Yamaha PSR-E373"/>
+                    <img src="/img/productos/tc001.jpg" alt="Teclado Digital Yamaha PSR-E373"/>
                     <h3>Teclado Digital 61 teclas</h3>
                     <p className="brand">Yamaha PSR-E373</p>
                     <p className="price">$249.990</p>
@@ -39,7 +40,7 @@ export function Index(){
                 </article>
 
                 <article className="product-article">
-                    <img src="img/productos/mi001.jpg" alt="Micrófono Dinámico Shure SM58"/>
+                    <img src="/img/productos/mi001.jpg" alt="Micrófono Dinámico Shure SM58"/>
                     <h3>Micrófono Dinámico Cardioide</h3>
                     <p className="brand">Shure SM58</p>
                     <p className="price">$149.990</p>
