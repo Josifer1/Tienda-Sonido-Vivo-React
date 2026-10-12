@@ -509,3 +509,8 @@ img {
   }
 }
 
+.mensaje-estado {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #555;
+}

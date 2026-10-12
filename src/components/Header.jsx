@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 export function Header(){
     return(
@@ -6,7 +6,7 @@ export function Header(){
             <Link to="/">SONIDO VIVO</Link>
             <nav className="nav-menu">
                 <ul>
-                    <li><NavLink to="/">Inicio</NavLink></li>
+                    <li><NavLink to="/" end>Inicio</NavLink></li>
                     <li><NavLink to="/productos">Productos</NavLink></li>
                     <li><NavLink to="/nosotros">Nosotros</NavLink></li>
                     <li><NavLink to="/blogs">Blogs</NavLink></li>
