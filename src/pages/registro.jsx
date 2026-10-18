@@ -1,74 +1,87 @@
-export function Registro(){
-    return(
-         <main>
-        <section className="form-section">
-            <form id="form-registro" className="formulario" noValidate>
-                <h1>Registro de usuario</h1>
+import { useState } from "react";
+import { Campo } from "../components/Campo";
+import {useFormulario} from "../hooks/useFormulario"
+import { validarRegistro } from "../utils/validaciones";
+import { regionesComunas, obtenerComunas} from "../data/regiones" 
 
-                <div className="campo">
-                    <label htmlFor="run">RUN</label>
-                    <input type="text" id="run" name="run" placeholder="19011022K"/>
-                    <span className="error-mensaje" id="error-run"></span>
-                </div>
+const VALORES_INICIALES = {
+  run: "",
+  nombre: "",
+  apellidos: "",
+  correo: "",
+  password: "",
+  confirmacion: "",
+  region: "",
+  comuna: "",
+  direccion: "",
+};
 
-                <div className="campo">
-                    <label htmlFor="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" autoComplete="given-name"/>
-                    <span className="error-mensaje" id="error-nombre"></span>
-                </div>
+export function Registro() {
+  const [mensaje, setMensaje] = useState({ texto: "", exito: false });
+  const { valores, errores, manejarCambio, manejarBlur, establecerValor, enviar, reiniciar } =
+    useFormulario(VALORES_INICIALES, validarRegistro);
 
-                <div className="campo">
-                    <label htmlFor="apellidos">Apellidos</label>
-                    <input type="text" id="apellidos" name="apellidos" autoComplete="family-name"/>
-                    <span className="error-mensaje" id="error-apellidos"></span>
-                </div>
+  const manejarCambioRegion = (evento) => {
+    manejarCambio(evento);
+    establecerValor("comuna", "");
+  };
 
-                <div className="campo">
-                    <label htmlFor="correo">Correo electrónico</label>
-                    <input type="email" id="correo" name="correo" autoComplete="email" placeholder="nombre@duoc.cl"/>
-                    <span className="error-mensaje" id="error-correo"></span>
-                </div>
+  const registrar = () => {
+    setMensaje({ texto: "¡Registro exitoso! Bienvenido/a a Sonido Vivo.", exito: true });
+    reiniciar();
+  };
 
-                <div className="campo">
-                    <label htmlFor="password">Contraseña</label>
-                    <input type="password" id="password" name="password" autoComplete="new-password"/>
-                    <span className="error-mensaje" id="error-password"></span>
-                </div>
+  const avisarErrores = () => {
+    setMensaje({ texto: "Por favor corrige los errores marcados antes de continuar.", exito: false });
+  };
 
-                <div className="campo">
-                    <label htmlFor="password-confirm">Confirmar contraseña</label>
-                    <input type="password" id="password-confirm" name="password-confirm" autoComplete="new-password"/>
-                    <span className="error-mensaje" id="error-password-confirm"></span>
-                </div>
+  const propsDe = (campo) => ({
+    value: valores[campo],
+    error: errores[campo],
+    onChange: manejarCambio,
+    onBlur: manejarBlur,
+  });
 
-                <div className="campo-doble">
-                    <div className="campo">
-                        <label htmlFor="region">Región</label>
-                        <select id="region" name="region">
-                            <option value="">-- Seleccione la región --</option>
-                        </select>
-                        <span className="error-mensaje" id="error-region"></span>
-                    </div>
+  return (
+    <main>
+      <section className="form-section">
+        <form className="formulario" noValidate onSubmit={enviar(registrar, avisarErrores)}>
+          <h1>Registro de usuario</h1>
 
-                    <div className="campo">
-                        <label htmlFor="comuna">Comuna</label>
-                        <select id="comuna" name="comuna">
-                            <option value="">-- Seleccione la comuna --</option>
-                        </select>
-                        <span className="error-mensaje" id="error-comuna"></span>
-                    </div>
-                </div>
+          <Campo id="run" etiqueta="RUN" placeholder="Ej: 123456785 (sin puntos ni guion)" {...propsDe("run")} />
+          <Campo id="nombre" etiqueta="Nombre completo" autoComplete="given-name" {...propsDe("nombre")} />
+          <Campo id="apellidos" etiqueta="Apellidos" autoComplete="family-name" {...propsDe("apellidos")} />
+          <Campo id="correo" etiqueta="Correo electrónico" tipo="email" autoComplete="email" placeholder="nombre@duoc.cl" {...propsDe("correo")} />
+          <Campo id="password" etiqueta="Contraseña" tipo="password" autoComplete="new-password" placeholder="Entre 4 y 10 caracteres" {...propsDe("password")} />
+          <Campo id="confirmacion" etiqueta="Confirmar contraseña" tipo="password" autoComplete="new-password" {...propsDe("confirmacion")} />
 
-                <div className="campo">
-                    <label htmlFor="direccion">Dirección</label>
-                    <input type="text" id="direccion" name="direccion"/>
-                    <span className="error-mensaje" id="error-direccion"></span>
-                </div>
+          <div className="campo-doble">
+            <Campo
+              id="region"
+              etiqueta="Región"
+              tipo="select"
+              textoVacio="-- Seleccione la región --"
+              opciones={Object.keys(regionesComunas)}
+              {...propsDe("region")}
+              onChange={manejarCambioRegion}
+            />
+            <Campo
+              id="comuna"
+              etiqueta="Comuna"
+              tipo="select"
+              textoVacio="-- Seleccione la comuna --"
+              opciones={obtenerComunas(valores.region)}
+              disabled={valores.region === ""}
+              {...propsDe("comuna")}
+            />
+          </div>
 
-                <button type="submit" className="btn-primary">Registrar</button>
-                <p className="form-exito" id="registro-exito"></p>
-            </form>
-        </section>
+          <Campo id="direccion" etiqueta="Dirección" autoComplete="street-address" {...propsDe("direccion")} />
+
+          <button type="submit" className="btn-primary">Registrar</button>
+          <p className={`form-exito ${mensaje.exito ? "exito" : ""}`}>{mensaje.texto}</p>
+        </form>
+      </section>
     </main>
-    )
+  );
 }
