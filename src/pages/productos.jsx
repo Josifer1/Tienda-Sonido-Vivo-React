@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
 import { obtenerProductos } from "../services/productosService";
+import { useCarrito } from "../hooks/useCarrito";
 
 export function Productos() {
+  const { agregarProducto } = useCarrito();
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +29,7 @@ export function Productos() {
         <h2>Todos los Productos</h2>
         <div className="productos-grid">
           {productos.map((producto) => (
-            <ProductCard key={producto.id} producto={producto} />
+            <ProductCard key={producto.id} producto={producto} onAgregar={agregarProducto} />
           ))}
         </div>
       </section>

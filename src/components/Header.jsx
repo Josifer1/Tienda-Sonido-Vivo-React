@@ -1,6 +1,10 @@
 import { Link, NavLink } from "react-router";
+import { useCarrito } from "../hooks/useCarrito";
 
 export function Header(){
+
+    const{ totalItems } = useCarrito();
+
     return(
         <header className="header-index">
             <Link to="/">SONIDO VIVO</Link>
@@ -16,7 +20,7 @@ export function Header(){
             <div className="header-acciones">
                 <NavLink to="/login">Iniciar Sesión</NavLink>
                 <NavLink to="/registro">Registrarse</NavLink>
-                <span className="carrito-link">Carrito (0)</span>
+                <NavLink to="/carrito" className="carrito-link">Carrito ({totalItems})</NavLink>
             </div>
         </header>
     );
