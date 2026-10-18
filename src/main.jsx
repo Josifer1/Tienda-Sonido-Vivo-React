@@ -14,24 +14,29 @@ import { Nosotros } from './pages/nosotros.jsx'
 import { Productos } from './pages/productos.jsx'
 import { Registro } from './pages/registro.jsx'
 import { Detalle_Producto } from './pages/detalle-producto.jsx'
+import { CarritoProvider } from './context/CarritoProvider.jsx'
+import { Carrito } from './pages/carrito.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/productos" element={<Productos />} />
-        <Route path="/detalle-producto/:id" element={<Detalle_Producto />} />
-        <Route path="/nosotros" element={<Nosotros />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/detalle-blog-1" element={<Detalle_Blog_1 />} />
-        <Route path="/detalle-blog-2" element={<Detalle_Blog_2 />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Registro />} />
-      </Routes>
-      <Footer />
+      <CarritoProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/productos" element={<Productos />} />
+          <Route path="/detalle-producto/:id" element={<Detalle_Producto />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/detalle-blog-1" element={<Detalle_Blog_1 />} />
+          <Route path="/detalle-blog-2" element={<Detalle_Blog_2 />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/carrito" element={<Carrito />} />
+        </Routes>
+        <Footer />
+      </CarritoProvider>
     </BrowserRouter>
   </StrictMode>,
 )

@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { obtenerProductoPorId } from "../services/productosService";
 import { formatearPrecio } from "../utils/formatearPrecio";
+import { useCarrito } from "../hooks/useCarrito";
 
 export function Detalle_Producto() {
+  const {agregarProducto} = useCarrito();
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
@@ -41,7 +43,9 @@ export function Detalle_Producto() {
           <p className="price-large">{formatearPrecio(producto.precio)}</p>
           <p className="detalle-descripcion">{producto.descripcion}</p>
           <p className="detalle-stock">Stock disponible: {producto.stock} unidades</p>
-          <button className="btn-add-article">Añadir al carrito</button>
+          <button className="btn-add-article" onClick={() => agregarProducto(producto)}>
+            Añadir al carrito
+          </button>
         </div>
       </section>
     </main>
